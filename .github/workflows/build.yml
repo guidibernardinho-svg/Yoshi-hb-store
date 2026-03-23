@@ -1,19 +1,11 @@
-name: Build HB Store
+- name: Install devkitPro (FIX)
+  run: |
+    sudo apt update
+    sudo apt install -y git wget
 
-on:
-  push:
-  workflow_dispatch:
+    git clone https://github.com/devkitPro/pacman.git
+    cd pacman
+    sudo bash ./install.sh
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Install devkitPro
-        run: |
-          sudo apt update
-          sudo apt install -y wget
-          wget https://apt.devkitpro.org/install-devkitpro-pacman
+    sudo dkp-pacman -Syu --noconfirm
+    sudo dkp-pacman -S --noconfirm devkitARM 3ds-dev
