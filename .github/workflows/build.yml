@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Setup devkitPro
         run: |
@@ -24,7 +24,8 @@ jobs:
           export DEVKITARM=$DEVKITPRO/devkitARM
           make
 
-      - uses: actions/upload-artifact@v3
+      - name: Upload
+        uses: actions/upload-artifact@v4
         with:
           name: yoshihbstore
           path: "*.3dsx"
